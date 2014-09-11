@@ -16,13 +16,13 @@ namespace NorthwindConsole
             //RunLambdaExamples();
 
             //Fill in these functions
-            //RunWhereExpressions();
+            RunWhereExpressions();
 
-            //RunSelectExpressions();
+            RunSelectExpressions();
 
             RunRelatedDataExpressions();
 
-            //RunAggregateFunctions();
+            RunAggregateFunctions();
 
             Console.ReadKey();
         }
@@ -91,28 +91,47 @@ namespace NorthwindConsole
 
             //create a loop to get all customers and select the unique cities that they live in order in reverse alphabetical order.  
             //print to console: <city>
-
+            foreach (var city in dc.Customers.Select(x=> x.City).Distinct().OrderByDescending(x=>x))
+            {
+                Console.WriteLine(city);
+            }
             //separate your output by a blank line followed by a comment line describing the out followed by another line LIKE ABOVE ON LINES 48-50
-
+            Console.WriteLine();
+            Console.WriteLine("END of writing customers and sorting one instance of a city by name");
+            Console.WriteLine();
 
             //separate your output by a blank line followed by a comment line describing the out followed by another line LIKE ABOVE ON LINES 35-37 
+            Console.WriteLine();
+            Console.WriteLine("START of writing all orders and the unique shipping postal code.");
+            Console.WriteLine();
 
             //create a loop to get all orders and select the unique shipping postal code.  
+            foreach (var postal in dc.Orders.Select(x => x.ShipPostalCode).Distinct())
             //print to console: <shipPostalCode>
+                Console.WriteLine(postal);
+
 
             //separate your output by a blank line followed by a comment line describing the out followed by another line LIKE ABOVE ON LINES 48-50
+            Console.WriteLine();
+            Console.WriteLine("END of writing all orders and the unique shipping postal code.");
+            Console.WriteLine();
 
-
-           
-        }
+ }
 
         static void RunWhereExpressions()
         {
 
             //separate your output by a blank line followed by a comment line describing the out followed by another line LIKE ABOVE ON LINES 35-37 
+            Console.WriteLine();
+            Console.WriteLine("START of writing all products that are over $50, not discontinuted, ordered by price.");
+            Console.WriteLine();
+            //create a loop to get all products that are over $50, not discontinuted.  order by price.
+            foreach (var product in dc.Products.Select(x => x).Where(x => x.UnitPrice > 50).OrderBy(x => x.UnitPrice))
+            {
+                Console.WriteLine("{0} - {1}", product.ProductName, product.UnitPrice);
+            }
+                //print to console: <productName> - <unitPrice>
 
-            //create a loop to get all products that are over $50, not discontinuted.  order by price.  
-            //print to console: <productName> - <unitPrice>
 
             //separate your output by a blank line followed by a comment line describing the out followed by another line LIKE ABOVE ON LINES 48-50
 
