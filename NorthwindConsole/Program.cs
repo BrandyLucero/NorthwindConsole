@@ -130,17 +130,25 @@ namespace NorthwindConsole
             {
                 Console.WriteLine("{0} - {1}", product.ProductName, product.UnitPrice);
             }
-                //print to console: <productName> - <unitPrice>
+            //print to console: <productName> - <unitPrice>
+
 
 
             //separate your output by a blank line followed by a comment line describing the out followed by another line LIKE ABOVE ON LINES 48-50
 
+            Console.WriteLine();
+            Console.WriteLine("END of writing all products that are over $50, not discontinuted, ordered by price.");
+            Console.WriteLine();
 
             //separate your output by a blank line followed by a comment line describing the out followed by another line LIKE ABOVE ON LINES 35-37 
+            Console.WriteLine();
+            Console.WriteLine("START of writing all employees that live in London, ordered by last name.");
+            Console.WriteLine();
+            //create a loop to get all employees that live in London, order by last name. 
+            foreach (var employee in dc.Employees.Select(x => x).Where(x => x.City == "London").OrderBy(x => x.LastName))
 
-            //create a loop to get all employees that live in London, order by last name.  
-            //print to console: <firstname> <lastname> lives in <city>
-
+                //print to console: <firstname> <lastname> lives in <city>
+                Console.WriteLine("{0} {1} lives in {2}", employee.FirstName, employee.LastName, employee.City);
             //separate your output by a blank line followed by a comment line describing the out followed by another line LIKE ABOVE ON LINES 48-50
 
 
